@@ -1,6 +1,6 @@
 {
   "name": "rule-matrix",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "\"# rule-matrix\"",
   "main": "index.js",
   "scripts": {

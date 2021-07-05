@@ -24,7 +24,7 @@ module.exports.flat = (obj)=>{
 
 /*Process*/
 module.exports.process = (rules, data, cb) => {
-  const start = new Date().getTime/1000
+  const start = dayjs()
   const a = rules.split("\n");
 
   //first line is the operand
@@ -223,18 +223,18 @@ var type_ = (t_, _t) => {
   }
   determine(v, step, () => {
     process.env.rete_results = results;
-    const c = new Date().getTime/1000-start
+    const c = dayjs(start).diff(dayjs(), "millisecond")
     console.log("Length of exec", c)
     results.execution = c
-    data.rete_results = results;
-    data.objects = type.reduce(function (result, field, index) {
+    let rete_results = results;
+    let objects = type.reduce(function (result, field, index) {
                 result[fields[index]] = field;
                 return result;
     }, {})
-    data.labels = data.labels.reduce(function (result, field, index) {
+    let labels = data.labels.reduce(function (result, field, index) {
                 result[fields[index+1]] = field.length>0?field:fields[index+1];
                 return result;
     }, {})
-    return cb()
+    return cb(rete_results,labels,objects)
   });
 }
