@@ -21,3 +21,46 @@ rules.process(rules_,obj,(results,labels,objects)=>{
 ```
 
 More complex examples to come.
+
+##Allowed operands
+Operand must be row number 1
+| Operand       | Use                | Description                   |
+|---------------|--------------------|-------------------------------|
+| result        | Field Manipulation | A data field that is returned |
+| return        | Field Manipulation | Same as above                 |
+| equals or "=" | Condition          | A matching value              |
+| not           | Condition          | Not equal to                  |
+| <             | Condition          | Less than                     |
+| <=            | Condition          | Less than or equal to         |
+| >             | Condition          | Greater than                  |
+| >=            | Condition          | Greater than or equal to      |
+| startsWith    | Condition          | For strings only.             |
+| contains      | Condition          | For strings only.             |
+| endsWith      | Condition          | For strings only              |
+
+##Allowed Types
+Type must be row number 2
+| Type      | Description                                                                   |
+|-----------|-------------------------------------------------------------------------------|
+| string    |                                                                               |
+| signature | A base64 signature. Treated like a string                                     |
+| double    |                                                                               |
+| calc      | Uses mathjs. See mathjs for examples. ie:(p-v)/(p+v)                          |
+| bool      |                                                                               |
+| number    |                                                                               |
+| date      | Uses dayjs. Values can be a Date or NOW for the date now                      |
+| json      | Complex output, Used for result fields only. Syntax to be updated for clarity |
+|           |                                                                               |
+|           |                                                                               |
+|           |                                                                               |
+
+##The field line
+Must be row number 3
+The field from the object you are passing in.
+
+##label
+Must be row number 4 is it exists
+A label is returned in position 2 of the callback. Useful for dynamic front ends
+
+##value
+This is either the value you are comparing against or the value to be returned
