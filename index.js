@@ -21,7 +21,7 @@ module.exports.flat = (obj)=>{
 
 /*Process*/
 module.exports.process = (rules, data, cb) => {
-  const start = x.moment()
+  const start = new Date().getTime/1000
   const a = rules.split("\n");
 
   //first line is the operand
@@ -84,10 +84,10 @@ var type_ = (t_, _t) => {
               case "date":
                   switch (t_){
                         case "NOW":
-                            return  x.dayjs().unix();
+                            return  dayjs().unix();
                             break;
                         default:
-                            return x.dayjs(t_).unix()
+                            return dayjs(t_).unix()
                     }
                  
               case "json":
@@ -110,15 +110,15 @@ var type_ = (t_, _t) => {
       var f=field
     switch (type){
         case "calc":
-            f = x.maths.evaluate(field,data)
+            f = maths.evaluate(field,data)
         break;
         case "date":
             switch (value){
                 case "NOW":
-                    f = x.dayjs().unix();
+                    f = dayjs().unix();
                     break;
                 default:
-                    f= x.dayjs(value).unix()
+                    f= dayjs(value).unix()
             }
             
         default:
@@ -220,7 +220,7 @@ var type_ = (t_, _t) => {
   }
   determine(v, step, () => {
     process.env.rete_results = results;
-    const c = x.moment().diff(start)
+    const c = new Date().getTime/1000-start
     console.log("Length of exec", c)
     results.execution = c
     data.rete_results = results;
