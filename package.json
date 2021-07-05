@@ -1,0 +1,20 @@
+{
+  "name": "rule-matrix",
+  "version": "1.0.0",
+  "description": "\"# rule-matrix\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/base2arthur/rule-matrix.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/base2arthur/rule-matrix/issues"
+  },
+  "homepage": "https://github.com/base2arthur/rule-matrix#readme"
+}
