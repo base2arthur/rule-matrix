@@ -1,3 +1,6 @@
+var maths = require("mathjs");
+var dayjs = require('dayjs')
+
 const flatten = (obj, roots = [], sep = '.') => Object
 // find props of given object
 .keys(obj)

@@ -1,6 +1,6 @@
 {
   "name": "rule-matrix",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "\"# rule-matrix\"",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/base2arthur/rule-matrix/issues"
   },
-  "homepage": "https://github.com/base2arthur/rule-matrix#readme"
+  "homepage": "https://github.com/base2arthur/rule-matrix#readme",
+  "dependencies": {
+    "dayjs": "^1.10.5",
+    "mathjs": "^9.4.3"
+  }
 }
