@@ -212,14 +212,15 @@ var type_ = (t_, _t) => {
 
   var step = 3
   console.log("LBAEL",v[step])
+  let labels=[]
   const cc = v[step].split(",")
   if(cc[0]==="label"){
       console.log("LABEL")
-      data.labels = [...cc]
-      data.labels.shift()
+      labels = [...cc]
+      labels.shift()
       step++
   }else{
-      data.labels = []
+      labels = []
   }
   determine(v, step, () => {
     process.env.rete_results = results;
@@ -231,7 +232,7 @@ var type_ = (t_, _t) => {
                 result[fields[index]] = field;
                 return result;
     }, {})
-    let labels = data.labels.reduce(function (result, field, index) {
+    labels = labels.reduce(function (result, field, index) {
                 result[fields[index+1]] = field.length>0?field:fields[index+1];
                 return result;
     }, {})
