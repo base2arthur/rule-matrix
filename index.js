@@ -146,13 +146,16 @@ var type_ = (t_, _t) => {
         case 'return':
           results.matches = n
           data[field] = v;
-          console.log("Return", v,field)
+         // console.log("Return", v,field)
           break;
         case "equals":
         case "=":
+        case "===":
           t_ = f === v;
           break;
         case "not":
+        case "!=":
+        case "!==":
           t_ = f !== v;
           break;
         case "<":
@@ -176,6 +179,11 @@ var type_ = (t_, _t) => {
         case "endsWith":
             t_ = f.endsWith(v)
             break;
+        case "exists":
+          
+          t_ = (String(f).length >0)===boolean(v)
+          console.log(t_)
+          break;
         default:
           t_ = false;
       }
@@ -183,7 +191,7 @@ var type_ = (t_, _t) => {
       t_ = true;
     }
 
-    //console.log("Results", f, v, t_)
+     
     if (t_ && i < n.length) {
       match(n, i, function() {
         return cb();

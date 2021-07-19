@@ -37,6 +37,7 @@ Operand must be row number 1
 | startsWith    | Condition          | For strings only.             |
 | contains      | Condition          | For strings only.             |
 | endsWith      | Condition          | For strings only              |
+| exists        | Condition          | Exists                        |
 
 ##Allowed Types
 Type must be row number 2
