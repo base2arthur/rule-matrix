@@ -21,7 +21,9 @@ module.exports.flat = (obj)=>{
     return flatten(obj)
 }
 
-
+module.exports.run = (ruls,data,cb)=>{
+  module.exports.process(rules,data,cb)
+}
 /*Process*/
 module.exports.process = (rules, data, cb) => {
   const start = dayjs()
