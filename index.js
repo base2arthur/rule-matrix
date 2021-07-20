@@ -21,7 +21,7 @@ module.exports.flat = (obj)=>{
     return flatten(obj)
 }
 
-module.exports.run = (ruls,data,cb)=>{
+module.exports.run = (rules,data,cb)=>{
   module.exports.process(rules,data,cb)
 }
 /*Process*/
