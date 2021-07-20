@@ -233,7 +233,7 @@ var type_ = (t_, _t) => {
       labels = []
   }
   determine(v, step, () => {
-    process.env.rete_results = results;
+     
     const c = dayjs().diff(start, "millisecond")
     console.log("Length of exec", c)
     results.execution = c
