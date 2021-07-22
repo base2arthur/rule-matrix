@@ -77,6 +77,7 @@ var type_ = (t_, _t) => {
                 return parseFloat(t_);
                 break;
               case "bool":
+                  t_=t_||false
                   console.log("Test Bool",t_,_t)
                 return boolean(t_);
                 break;
@@ -136,21 +137,23 @@ var type_ = (t_, _t) => {
 
   var match = (n, i, cb) => {
     var t_ = true;
-    //console.log(data[fields[i]], type[i])
+    console.log(data[fields[i]], type[i])
     const f = type_(isCalc(type[i],fields[i],data[fields[i]]), type[i]);//const f = type_(data[fields[i]], type[i]);
     const v = n[i] && n[i].length > 0 ? type_(n[i], type[i]) : null;
+ 
     const field = fields[i]
     const o = operands[i];
-     //console.log("MATCH",t_,f,v,field,o)
-     
+    console.log("MATCH",type[i],f,v,field,o,v||(type[i]==="bool"))
+    const match_ = v||(type[i]==="bool")
     i++;
-    if (v) {
+    if (match_) {
+      console.log("Matched")
       switch (o) {
         case 'result':
         case 'return':
           results.matches = n
           data[field] = v;
-         // console.log("Return", v,field)
+          console.log("Return", v,field)
           break;
         case "equals":
         case "=":
@@ -207,8 +210,8 @@ var type_ = (t_, _t) => {
   };
 
   var determine = (m, i, cb) => {
-    const y = m[i].split(",");
-    //console.log(y);
+    const y = m[i].split(",") 
+ //   console.log(y);
     var t = 1;
     match(y, t, () => {
       i++;
