@@ -71,10 +71,7 @@ var type_ = (t_, _t) => {
         default:
     
             switch (_t) {
-              case 'string':
-              case 'signature':
-                return String(t_);
-                break;
+              
               case "double":
               case "calc":
                 return parseFloat(t_);
@@ -102,9 +99,14 @@ var type_ = (t_, _t) => {
                   else
                     return (t_||"")
                   break;
+              case 'string':
+              case 'signature':
+                      
               default:
                 // code
-                return null;
+                //return null;
+                return String(t_);
+                break;
             }
     }
 };
