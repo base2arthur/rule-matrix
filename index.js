@@ -39,28 +39,42 @@ module.exports.process = (rules, data, cb) => {
   const type = a[1].split(",");
   var results = {};
   const v = a;
-
+  const reserved = ["required","optional"]
   var boolean = (value) => {
-    switch (value) {
-      case true:
-      case "true":
-      case "True":
-      case "TRUE":
-      case "on":
-      case "On":
-      case "ON":
-      case "yes":
-      case "Yes":
-        return true;
-        break;
-      default:
-        return false;
+    if(reserved.includes(value)){
+      return value
+    }else{
+      switch (value) {
+        case true:
+        case "true":
+        case "True":
+        case "TRUE":
+        case "on":
+        case "On":
+        case "ON":
+        case "yes":
+        case "Yes":
+          return true;
+          break;
+        default:
+          return false;
+      }
     }
   };
 
 function isString (value) {
     return typeof value === 'string' || value instanceof String;
-    }
+}
+
+function Number_(m){
+  return reserved.includes(m)?m:Number(m)
+}
+function parseFloat_(m){
+  return reserved.includes(m)?m:parseFloat(m)
+}
+function date_(m){
+  return reserved.includes(m)?m:dayjs(m).unix()
+}
 var type_ = (t_, _t) => {
     switch(t_){
         case "required":
@@ -74,7 +88,7 @@ var type_ = (t_, _t) => {
               
               case "double":
               case "calc":
-                return parseFloat(t_);
+                return parseFloat_(t_);
                 break;
               case "bool":
                   t_=t_||false
@@ -82,7 +96,7 @@ var type_ = (t_, _t) => {
                 return boolean(t_);
                 break;
               case "number":
-                return Number(t_);
+                return Number_(t_);
                 break;
               case "date":
                   switch (t_){
@@ -90,7 +104,7 @@ var type_ = (t_, _t) => {
                             return  dayjs().unix();
                             break;
                         default:
-                            return dayjs(t_).unix()
+                            return date_(t_)
                     }
                  
               case "json":
