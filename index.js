@@ -251,6 +251,6 @@ var type_ = (t_, _t) => {
                 result[fields[index+1]] = field.length>0?field:fields[index+1];
                 return result;
     }, {})
-    return cb(rete_results,labels,objects)
+    return cb(rete_results,labels,objects,fields)
   });
 }

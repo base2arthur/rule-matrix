@@ -21,6 +21,6 @@ let obj = {
 }
 
 
-rules.process(rules_,obj,(results,labels,objects)=>{
-    console.log(obj,results,labels,objects)
+rules.process(rules_,obj,(results,labels,objects,order)=>{
+    console.log(obj,results,labels,objects,order)
 })
