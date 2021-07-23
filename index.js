@@ -78,7 +78,7 @@ var type_ = (t_, _t) => {
                 break;
               case "bool":
                   t_=t_||false
-                  console.log("Test Bool",t_,_t)
+              //    console.log("Test Bool",t_,_t)
                 return boolean(t_);
                 break;
               case "number":
@@ -137,27 +137,28 @@ var type_ = (t_, _t) => {
 
   var match = (n, i, cb) => {
     var t_ = true;
-    console.log(data[fields[i]], type[i])
+   // console.log(data[fields[i]], type[i])
     const f = type_(isCalc(type[i],fields[i],data[fields[i]]), type[i]);//const f = type_(data[fields[i]], type[i]);
     const v = n[i] && n[i].length > 0 ? type_(n[i], type[i]) : null;
  
     const field = fields[i]
     const o = operands[i];
-    console.log("MATCH",type[i],f,v,field,o,v||(type[i]==="bool"))
+    
     const match_ = v||(type[i]==="bool")
     i++;
     if (match_) {
-      console.log("Matched")
+       
       switch (o) {
         case 'result':
         case 'return':
           results.matches = n
           data[field] = v;
-          console.log("Return", v,field)
+          //console.log("Return", v,field)
           break;
         case "equals":
         case "=":
         case "===":
+        //  console.log(field,f,v)
           t_ = f === v;
           break;
         case "not":
@@ -189,7 +190,7 @@ var type_ = (t_, _t) => {
         case "exists":
           
           t_ = (String(f).length >0)===boolean(v)
-          console.log(t_)
+           
           break;
         default:
           t_ = false;
@@ -226,11 +227,10 @@ var type_ = (t_, _t) => {
   };
 
   var step = 3
-  console.log("LBAEL",v[step])
+ // console.log("LBAEL",v[step])
   let labels=[]
   const cc = v[step].split(",")
   if(cc[0]==="label"){
-      console.log("LABEL")
       labels = [...cc]
       labels.shift()
       step++
