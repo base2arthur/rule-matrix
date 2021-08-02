@@ -1,6 +1,6 @@
 var maths = require("mathjs");
 var dayjs = require('dayjs')
-
+let handlebars = require("handlebars")
 const flatten = (obj, roots = [], sep = '.') => Object
 // find props of given object
 .keys(obj)
@@ -22,7 +22,18 @@ module.exports.flat = (obj)=>{
 }
 
 module.exports.run = (rules,data,cb)=>{
-  module.exports.process(rules,data,cb)
+  console.log(rules)
+  handlebar(rules,data,(r)=>{
+    console.log(r)
+    module.exports.process(r,data,cb)
+  })
+ 
+}
+
+const handlebar = (rules,data,cb)=>{
+  const template = handlebars.compile(rules)
+  const result = template(data)
+  return cb(result)
 }
 /*Process*/
 module.exports.process = (rules, data, cb) => {
