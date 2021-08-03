@@ -3,7 +3,7 @@ A simple matrix based rules engine that is top down and returns the last match
 It removes the need for complex if statements and allows business users to define the rules easier
 ## How to use it
 
-## Handlebars ability
+## MustACHE ability
 The engine now has the ability to replace text in the rules with data passed in. Useful to limit the number of situations required to be recorded
 
 

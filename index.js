@@ -1,6 +1,6 @@
 var maths = require("mathjs");
 var dayjs = require('dayjs')
-let handlebars = require("handlebars")
+let handlebars = require("mustache")//Handlebars sucks eggs with svelte
 const flatten = (obj, roots = [], sep = '.') => Object
 // find props of given object
 .keys(obj)
@@ -30,8 +30,9 @@ module.exports.run = (rules,data,cb)=>{
 }
 
 const handlebar = (rules,data,cb)=>{
-  const template = handlebars.compile(rules)
-  const result = template(data)
+ // const template = handlebars.compile(rules)
+ // const result = template(data)
+  const result = handlebars.render(rules,data)
   return cb(result)
 }
 /*Process*/
@@ -143,7 +144,7 @@ var type_ = (t_, _t) => {
     switch (type){
         case "calc":
             f = maths.evaluate(field,data)
-            console.log("CALC",f)
+           // console.log("CALC",f)
         break;
         case "date":
             switch (value){
@@ -170,7 +171,7 @@ var type_ = (t_, _t) => {
     const o = operands[i];
     
     const match_ = v//||(type[i]==="bool")
-    console.log("match",n[i],type_(n[i], type[i]))
+    //console.log("match",n[i],type_(n[i], type[i]))
     i++;
     if (match_) {
        
@@ -184,7 +185,7 @@ var type_ = (t_, _t) => {
         case "equals":
         case "=":
         case "===":
-          console.log(field,f,v)
+          ///console.log(field,f,v)
           t_ = f === v;
           break;
         case "not":
@@ -238,7 +239,7 @@ var type_ = (t_, _t) => {
 
   var determine = (m, i, cb) => {
     const y = m[i].split(",") 
-     console.log("determine",i)
+    // console.log("determine",i)
     var t = 1;
     match(y, t, () => {
       i++;
