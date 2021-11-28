@@ -73,6 +73,13 @@ module.exports.process = (rules, data, cb) => {
     }
   };
 
+function String_(value){
+  let s = String(value)
+  if(s==='undefined')
+    s=null
+  return s
+}
+
 function isString (value) {
     return typeof value === 'string' || value instanceof String;
 }
@@ -131,7 +138,7 @@ var type_ = (t_, _t) => {
               default:
                 // code
                 //return null;
-                return String(t_);
+                return String_(t_);
                 break;
             }
     }
@@ -216,7 +223,7 @@ var type_ = (t_, _t) => {
             break;
         case "exists":
           
-          t_ = (String(f).length >0)===boolean(v)
+          t_ = (String_(f).length >0)===boolean(v)
            
           break;
         default:
