@@ -1,21 +1,30 @@
 var maths = require("mathjs");
 var dayjs = require('dayjs')
 let handlebars = require("mustache")//Handlebars sucks eggs with svelte
-const flatten = (obj, roots = [], sep = '.') => Object
-// find props of given object
-.keys(obj)
-// return an object by iterating props
-.reduce((memo, prop) => Object.assign(
-// create a new object
-{},
-// include previously returned object
-memo,
-Object.prototype.toString.call(obj[prop]) === '[object Object]'
-  // keep working if value is an object
-  ? flatten(obj[prop], roots.concat([prop]))
-  // include current prop and value and prefix prop with the roots
-  : {[roots.concat([prop]).join(sep)]: obj[prop]}
-), {})
+
+function flatten(data,sep=".") {
+  var result = {};
+  function recurse (cur, prop) {
+      if (Object(cur) !== cur) {
+          result[prop] = cur;
+      } else if (Array.isArray(cur)) {
+          for(var i=0, l=cur.length; i<l; i++)
+              recurse(cur[i], prop ? prop+sep+i : ""+i);
+          if (l == 0)
+              result[prop] = [];
+      } else {
+          var isEmpty = true;
+          for (var p in cur) {
+              isEmpty = false;
+              recurse(cur[p], prop ? prop+sep+p : p);
+          }
+          if (isEmpty)
+              result[prop] = {};
+      }
+  }
+  recurse(data, "");
+  return result;
+}
 
 module.exports.flat = (obj)=>{
     return flatten(obj)
