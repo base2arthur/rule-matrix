@@ -225,7 +225,7 @@ var type_ = (t_, _t) => {
             break;
         case "exists":
           
-          t_ = (String_(f).length >0)===boolean(v)
+          t_ = (String_(f)?.length >0)===boolean(v)
            
           break;
         default:
