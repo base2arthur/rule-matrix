@@ -77,6 +77,8 @@ function String_(value){
   let s = String(value)
   if(s==='undefined')
     s=null
+  if(s==='null')
+    s=null
   return s
 }
 
