@@ -24,13 +24,16 @@ function flatten(data,sep=".") {
   }
   recurse(data, "");
   return result;
-}
+} 
 
 module.exports.flat = (obj)=>{
     return flatten(obj)
 }
 
 module.exports.run = (rules,data,cb)=>{
+   
+  data =  flatten(data)
+
   //console.log(rules)
   handlebar(rules,data,(r)=>{
     module.exports.process(r,data,cb)

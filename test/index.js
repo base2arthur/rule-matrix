@@ -85,7 +85,7 @@ let obj = {
                 }
             }
 
-let y = rules.flat(obj)
+let y = obj//rules.flat(obj)
 console.log("Flattened",y)
 rules.run(rules_,y,(results,labels,objects,order)=>{
     console.log(results)
