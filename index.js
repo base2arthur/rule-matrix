@@ -32,7 +32,7 @@ module.exports.flat = (obj)=>{
 
 module.exports.run = (rules,data,cb)=>{
    
-  data =  flatten(data)
+  //data =  flatten(data)
 
   //console.log(rules)
   handlebar(rules,data,(r)=>{
