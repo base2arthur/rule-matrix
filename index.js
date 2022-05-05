@@ -47,6 +47,7 @@ const handlebar = (rules,data,cb)=>{
  // const template = handlebars.compile(rules)
  // const result = template(data)
 
+ if(!data.calc)
   data.calc = function(){
     return function(text,render){
       const y = render(text)
