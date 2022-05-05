@@ -68,3 +68,7 @@ A label is returned in position 2 of the callback. Useful for dynamic front ends
 
 ##value
 This is either the value you are comparing against or the value to be returned
+
+##Return and Result
+We now have a special vield value called calc. WHen the field type is Number or Double, you can execute a formula using mathjs to return the value
+ie: {{#calc}}(p-v){{/calc}}

@@ -2,9 +2,9 @@ var maths = require("mathjs");
 var dayjs = require('dayjs')
 let handlebars = require("mustache")//Handlebars sucks eggs with svelte
 
-function flatten(data,sep=".") {
+ function flatten(data,sep=".") {
   var result = {};
-  function recurse (cur, prop) {
+   function recurse (cur, prop) {
       if (Object(cur) !== cur) {
           result[prop] = cur;
       } else if (Array.isArray(cur)) {
@@ -21,21 +21,23 @@ function flatten(data,sep=".") {
           if (isEmpty)
               result[prop] = {};
       }
+      return  Promise.resolve(1)
   }
-  recurse(data, "");
+   recurse(data, "");
   return result;
 } 
 
-module.exports.flat = (obj)=>{
-    return flatten(obj)
+module.exports.flat =  (obj)=>{
+    return  flatten(obj)
 }
 
 module.exports.run = (rules,data,cb)=>{
    
-  //data =  flatten(data)
+  
 
   //console.log(rules)
   handlebar(rules,data,(r)=>{
+    data =   flatten(data)
     module.exports.process(r,data,cb)
   })
  
@@ -44,7 +46,16 @@ module.exports.run = (rules,data,cb)=>{
 const handlebar = (rules,data,cb)=>{
  // const template = handlebars.compile(rules)
  // const result = template(data)
-  const result = handlebars.render(rules,data)
+
+  data.calc = function(){
+    return function(text,render){
+      const y = render(text)
+      return maths.evaluate(y)
+      
+    }
+  }
+
+  const result =  handlebars.render(rules,data)
   return cb(result)
 }
 /*Process*/
@@ -164,6 +175,7 @@ var type_ = (t_, _t) => {
       var f=field
     switch (type){
         case "calc":
+            console.log(field,data)
             f = maths.evaluate(field,data)
            // console.log("CALC",f)
         break;
