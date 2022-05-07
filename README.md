@@ -1,6 +1,6 @@
 # rule-matrix
 A simple matrix based rules engine that is top down and returns the last match
-It removes the need for complex if statements and allows business users to define the rules easier
+It removes the need for complex if statements and allows business users to define the rules easier using a csv file.
 ## How to use it
 
 ## MustACHE ability
