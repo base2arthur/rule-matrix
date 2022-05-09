@@ -1,6 +1,6 @@
 # rule-matrix
 A simple matrix based rules engine that is top down and returns the last match
-It removes the need for complex if statements and allows business users to define the rules easier
+It removes the need for complex if statements and allows business users to define the rules easier using a csv file.
 ## How to use it
 
 ## MustACHE ability
@@ -26,7 +26,7 @@ let y = await rules.run2(rules_,obj).
 
 More complex examples to come.
 
-##Allowed operands
+## Allowed operands
 Operand must be row number 1
 | Operand       | Use                | Description                   |
 |---------------|--------------------|-------------------------------|
@@ -43,7 +43,7 @@ Operand must be row number 1
 | endsWith      | Condition          | For strings only              |
 | exists        | Condition          | Exists                        |
 
-##Allowed Types
+## Allowed Types
 Type must be row number 2
 | Type      | Description                                                                   |
 |-----------|-------------------------------------------------------------------------------|
@@ -59,17 +59,17 @@ Type must be row number 2
 |           |                                                                               |
 |           |                                                                               |
 
-##The field line
+## The field line
 Must be row number 3
 The field from the object you are passing in.
 
-##label
+## label
 Must be row number 4 is it exists
 A label is returned in position 2 of the callback. Useful for dynamic front ends
 
-##value
+## Value
 This is either the value you are comparing against or the value to be returned
 
-##Return and Result
-We now have a special vield value called calc. WHen the field type is Number or Double, you can execute a formula using mathjs to return the value
+## Calc is incorporated into a Mustache function
+We now have a special field value called calc. When the field type is Number or Double, you can execute a formula using mathjs to return the value. 
 ie: {{#calc}}(p-v){{/calc}}
