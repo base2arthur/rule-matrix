@@ -17,10 +17,11 @@ let obj = {
 }
 
 
-rules.process(rules_,obj,(results,labels,objects)=>{
+rules.run(rules_,obj,(results,labels,objects)=>{
     console.log(obj,results,labels,objects)
 })
-
+or
+let y = await rules.run2(rules_,obj). 
 ```
 
 More complex examples to come.

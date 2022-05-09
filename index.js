@@ -34,19 +34,48 @@ module.exports.flat = async (obj) => {
   return await flatten(obj)
 }
 
+
+async function unflatten(obj) {
+  let data = await new Promise((resolve) => {
+    Object.unflatten_ = function (data) {
+      "use strict";
+      if (Object(data) !== data || Array.isArray(data))
+        return data;
+      var regex = /\.?([^.\[\]]+)|\[(\d+)\]/g,
+        resultholder = {};
+      for (var p in data) {
+        var cur = resultholder,
+          prop = "",
+          m;
+        while (m = regex.exec(p)) {
+          cur = cur[prop] || (cur[prop] = (m[2] ? [] : {}));
+          prop = m[2] || m[1];
+        }
+        cur[prop] = data[p];
+      }
+      return resultholder[""] || resultholder;
+    };
+
+    return resolve(Object.unflatten_(obj))
+  })
+
+  return data
+}
+
 module.exports.run2 = async (rules, data) => {
   var t1 = new Date();
   let r = await render(rules, data)
   data = await flatten(data)
   const result = await new Promise((resolve) => {
-    module.exports.process(r, data, (r,label,type,order)=>{
-      return resolve(r,label,type,order)
+    module.exports.process(r, data, (r, label, type, order) => {
+      return resolve(r, label, type, order)
     })
   })
   var t2 = new Date();
-	var dif = t2.getTime() - t1.getTime();
-	console.log(dif,"milliseconds")
-  return {...result,data}
+  var dif = t2.getTime() - t1.getTime();
+  console.log(dif, "milliseconds")
+  data = await unflatten(data)
+  return { ...result, data }
 }
 
 module.exports.run = (rules, data, cb) => {
