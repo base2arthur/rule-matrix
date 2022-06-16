@@ -23,9 +23,7 @@ const d = async()=>{
 	var t2 = new Date();
 	var dif = t2.getTime() - t1.getTime();
 	console.log(dif,"milliseconds")
-	console.log("Object",obj,y)
-	
-		 
+	console.log("Object",obj,y) 
 }
 
 const obj1 = JSON.parse(JSON.stringify(obj))

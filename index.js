@@ -31,7 +31,13 @@ async function flatten(data, sep = ".") {
 }
 
 module.exports.flat = async (obj) => {
-  return await flatten(obj)
+  const data = await new Promise((resolve)=>{
+    const flatten = (obj, roots=[], sep='.') => Object.keys(obj).reduce((memo, prop) => Object.assign({}, memo, Object.prototype.toString.call(obj[prop]) === '[object Object]' ? flatten(obj[prop], roots.concat([prop]), sep) : {[roots.concat([prop]).join(sep)]: obj[prop]}), {})
+    const d = flatten(obj)
+    return resolve(d)
+  })
+  return data
+  //return await flatten(obj)
 }
 
 
